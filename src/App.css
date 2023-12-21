@@ -1,0 +1,12 @@
+.App {
+    min-height: 100vh;
+    background-color: #FAF9F6;
+}
+
+.search-input {
+    padding-top: 20px;
+}
+
+.current__container {
+    padding-top: 150px;
+}
