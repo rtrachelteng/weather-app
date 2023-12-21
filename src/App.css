@@ -1,5 +1,7 @@
 .App {
     min-height: 100vh;
+    background-image: linear-gradient(#B7E9F7, #FAF9F6);
+    /* For browsers that do not support gradients */
     background-color: #FAF9F6;
 }
 
@@ -7,6 +9,10 @@
     padding-top: 20px;
 }
 
-.current__container {
-    padding-top: 150px;
+.weather-card {
+    padding-top: 100px;
+}
+
+.weather-card__content-container {
+    padding:20px;
 }

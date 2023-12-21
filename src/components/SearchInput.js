@@ -2,34 +2,36 @@ import {useState} from 'react';
 import {Grid, IconButton, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-function SearchInput() {
-  const [country, setCountry] = useState('')
+
+function SearchInput(props) {
+  const [value, setValue] = useState('')
 
   const handleChange = event => {
-    setCountry(event.target.value);
-    console.log('value is:', event.target.value);
+    setValue(event.target.value);
   };
 
   const onClick = () =>  {
-    fetch('https://jsonplaceholder.typicode.com/posts/1')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+    props.handleClick(value);
+  }
+
+  const onKeyPress = event =>  {
+    if(event.keyCode === 13) onClick();
   }
 
   return (
     <div className={'search-input'}>
       <Grid container spacing={1}>
-        <Grid item xs={10}>
+        <Grid item xs={11}>
           <TextField
             label="Country or City"
-            variant="filled"
+            variant="outlined"
             fullWidth
             onChange={handleChange}
-            value={country}
+            onKeyDown={onKeyPress}
+            value={value}
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={1}>
           <IconButton
             aria-label="search"
             size="large"
