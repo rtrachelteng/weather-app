@@ -10,9 +10,20 @@
 }
 
 .weather-card {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .weather-card__content-container {
     padding:20px;
 }
+
+.history-card {
+    padding-top: 20px;
+}
+
+.MuiGrid-container {
+    display: flex !important;
+    align-items: center !important;;
+    flex-wrap: wrap !important;;
+}
+

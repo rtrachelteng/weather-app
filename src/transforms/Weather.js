@@ -6,11 +6,11 @@ function capitalizeFirstLetter(str) {
 }
 
 function formatDateTime(unix) {
-  return moment(unix*1000).format('YYYY-MMM-DD hh:mm a');
+  return moment(unix*1000).format('YYYY-MMM-DD hh:mm A');
 }
 
 function formatTime(unix) {
-  return moment(unix*1000).format('hh:mm a');
+  return moment(unix*1000).format('hh:mm A');
 }
 
 function round(num) {
@@ -20,7 +20,8 @@ function round(num) {
 export default class WeatherTransform extends Transform {
   static fetch(data) {
     return {
-      location: `${data?.name}, ${data?.sys?.country}`,
+      name: data?.name,
+      country: data?.sys?.country,
       description: capitalizeFirstLetter(data?.weather[0]?.description),
       temp: `${round(data?.main?.temp)}°C`,
       temp_range: `H: ${round(data?.main?.temp_max)}°C   L:${round(data?.main?.temp_min)}°C`,

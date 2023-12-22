@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Grid, IconButton, TextField} from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import {Box, Grid, TextField} from "@mui/material";
+import Logo from '../assets/weather-icon.png';
 
 
 function SearchInput(props) {
@@ -10,36 +10,38 @@ function SearchInput(props) {
     setValue(event.target.value);
   };
 
-  const onClick = () =>  {
-    props.handleClick(value);
-  }
-
   const onKeyPress = event =>  {
-    if(event.keyCode === 13) onClick();
+    if(event.keyCode === 13) {
+      props.handleClick(value);
+      setValue('');
+    }
   }
 
   return (
-    <div className={'search-input'}>
-      <Grid container spacing={1}>
-        <Grid item xs={11}>
+    <div >
+      <Grid
+        className={'search-input'}
+        container spacing={1}
+      >
+        <Grid item xs={2}>
+          <Box
+            component="img"
+            sx={{
+              maxHeight: { xs: 40, md: 80 },
+            }}
+            alt="weather-logo"
+            src={Logo}
+          />
+        </Grid>
+        <Grid item xs={10}>
           <TextField
-            label="Country or City"
+            label="Enter a Country or City"
             variant="outlined"
             fullWidth
             onChange={handleChange}
             onKeyDown={onKeyPress}
             value={value}
           />
-        </Grid>
-        <Grid item xs={1}>
-          <IconButton
-            aria-label="search"
-            size="large"
-            color="primary"
-            onClick={onClick}
-          >
-            <SearchIcon fontSize="inherit" />
-          </IconButton>
         </Grid>
       </Grid>
     </div>

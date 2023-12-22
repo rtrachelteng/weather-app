@@ -65,9 +65,9 @@ export default function CurrentWeather(props) {
         <Grid item xs={8}>
           <Typography
             variant="h6"
-            color='text.secondary'
+            color='text.primary'
           >
-            {weather?.location?.toUpperCase()}
+            {weather?.name?.toUpperCase()}, {weather?.country?.toUpperCase()}
           </Typography>
           <Typography
             variant="h2"

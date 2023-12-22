@@ -5,7 +5,12 @@ import CurrentWeather from "./CurrentWeather";
 
 export default function WeatherCard(props) {
   return (
-    <div className={'weather-card'}>
+    <div
+      className={'weather-card'}
+      style={{
+        visibility: props.weather ? 'visible' : 'hidden'
+      }}
+    >
       <Card
         sx={{ minWidth: 275, bgcolor: 'rgba(250,250,250,0.5)' }}
       >
