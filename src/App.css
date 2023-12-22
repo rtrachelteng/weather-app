@@ -6,7 +6,7 @@
 }
 
 .search-input {
-    padding-top: 20px;
+    padding-top: 40px;
 }
 
 .weather-card {
@@ -19,6 +19,8 @@
 
 .history-card {
     padding-top: 20px;
+    padding-bottom: 30px;
+    transition: all 1s ease-out;
 }
 
 .MuiGrid-container {
@@ -26,4 +28,5 @@
     align-items: center !important;;
     flex-wrap: wrap !important;;
 }
+
 

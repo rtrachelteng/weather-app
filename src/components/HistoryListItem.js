@@ -5,10 +5,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export default function HistoryListItem (props) {
   const { history } = props;
 
+  // Get weather details based on entry selected
   function onSearch() {
     props.handleSearch(history.name);
   }
 
+  // Delete search record based on entry selected
   function onDelete() {
     props.handleDelete(history.id);
   }
@@ -16,8 +18,10 @@ export default function HistoryListItem (props) {
   return (
     <Box
       sx={{
+        bgcolor: 'rgba(25, 117, 209, 0.1)',
         borderRadius: 2,
-        bgcolor: 'rgba(222, 222, 222, 0.4)'
+        border: '2px solid',
+        borderColor: 'rgba(25, 117, 209, 0.6)',
       }}
     >
       <Grid container spacing={1} sx={{ px: 2, py: 1 }}>
@@ -40,9 +44,10 @@ export default function HistoryListItem (props) {
                 aria-label="search"
                 color="primary"
                 sx={{
-                  bgcolor: 'rgba(250, 250, 250, 1)',
+                  border: '1px solid',
+                  borderColor: 'rgba(25, 117, 209, 0.6)',
                   '&:hover': {
-                    bgcolor: 'rgba(250, 250, 250, 0.4)',
+                    bgcolor: 'rgba(25, 117, 209, 0.2)',
                   },
                 }}
                 onClick={onSearch}>
@@ -54,9 +59,10 @@ export default function HistoryListItem (props) {
                 aria-label="delete"
                 color="primary"
                 sx={{
-                  bgcolor: 'rgba(250, 250, 250, 1)',
+                  border: '1px solid',
+                  borderColor: 'rgba(25, 117, 209, 0.6)',
                   '&:hover': {
-                    bgcolor: 'rgba(250, 250, 250, 0.4)',
+                    bgcolor: 'rgba(25, 117, 209, 0.2)',
                   },
                 }}
                 onClick={onDelete}

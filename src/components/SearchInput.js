@@ -5,15 +5,19 @@ import Logo from '../assets/weather-icon.png';
 
 function SearchInput(props) {
   const [value, setValue] = useState('')
+  const [isValid, setValid] = useState(true)
 
   const handleChange = event => {
     setValue(event.target.value);
   };
 
-  const onKeyPress = event =>  {
+  // Get weather details after Enter was pressed
+  // If weather found valid = true and reset input, else valid = false
+  const onKeyPress = async event =>  {
     if(event.keyCode === 13) {
-      props.handleClick(value);
-      setValue('');
+      const valid = await props.handleClick(value);
+      setValid(valid)
+      if (valid) setValue('');
     }
   }
 
@@ -41,6 +45,8 @@ function SearchInput(props) {
             onChange={handleChange}
             onKeyDown={onKeyPress}
             value={value}
+            error={!isValid && value !== ''}
+            helperText={!isValid && value !== ''? 'Invalid input. Please try again' : ''}
           />
         </Grid>
       </Grid>

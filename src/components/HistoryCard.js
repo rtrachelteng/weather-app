@@ -6,17 +6,21 @@ import HistoryListItem from "./HistoryListItem";
 export default function HistoryCard(props) {
   const { historyList } = props
 
+  // Get weather details
   function handleSearch(value) {
     props.handleSearch(value);
   }
+
+  // Delete specific search record
   function handleDelete(value) {
     props.handleDelete(value);
   }
 
+  // Generate component depending on search history list provided
   const historyListComponent = historyList.map((history) => {
     return (
       <HistoryListItem
-        key={history.date_time}
+        key={history.id}
         history={history}
         handleSearch={handleSearch}
         handleDelete={handleDelete}
@@ -28,21 +32,22 @@ export default function HistoryCard(props) {
     <div
       className={'history-card'}
       style={{
-        visibility: !!historyList.length ? 'visible' : 'hidden'
+        visibility: !!historyList.length ? 'visible' : 'hidden',
+        opacity: !!historyList.length ? '1' : '0'
       }}
     >
       <Card
-        sx={{ minWidth: 275, bgcolor: 'rgba(250,250,250,0.5)' }}
+        sx={{ minWidth: 560, bgcolor: 'rgba(250,250,250,0.5)' }}
       >
         <CardContent>
           <div className={'weather-card__content-container'}>
             <Typography
               variant="h6"
-              color='text.primary'
+              color='primary.main'
             >
-              Search history
+              Search History
             </Typography>
-            <Container sx={{ pt: 4 }}>
+            <Container sx={{ pt: 3 }}>
               <Stack
                 direction='column'
                 justifyContent="center"

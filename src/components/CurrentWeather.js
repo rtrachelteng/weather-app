@@ -1,63 +1,10 @@
 import {Grid, Typography, Box} from "@mui/material";
-import OpacityIcon from '@mui/icons-material/Opacity';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import NightsStayRoundedIcon from '@mui/icons-material/NightsStayRounded';
 import sun from '../assets/sun.png';
 import cloud from '../assets/cloud.png';
+import CurrentWeatherDetails from "./CurrentWeatherDetails";
 
 export default function CurrentWeather(props) {
   const { weather } = props;
-
-  const additionalDetailsList = [
-    {
-      id: 'humidity',
-      icon: OpacityIcon,
-      value: `${weather.humidity}%`,
-      space: 2
-    },
-    {
-      id: 'date_time',
-      icon: CalendarMonthIcon,
-      value: weather.date_time,
-      space: 4
-    },
-    {
-      id: 'sunrise',
-      icon: WbSunnyRoundedIcon,
-      value: weather.sunrise,
-      space: 3
-    },
-    {
-      id: 'sunset',
-      icon: NightsStayRoundedIcon,
-      value: weather.sunset,
-      space: 3
-    }
-  ];
-
-  const additionalDetailsComponent = additionalDetailsList.map((details) => {
-    return (
-      <Grid
-        key={details.id}
-        item xs={details.space}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-        }}
-      >
-        <details.icon
-          sx={{ pr: 1 }}
-          color="primary" />
-        <Typography variant="subtitle2">
-          {details.value}
-        </Typography>
-      </Grid>
-    )
-  });
-
-  const imageSrc =  () => weather.humidity > 70 ? cloud : sun;
 
   return (
     <div className={'current-weather'}>
@@ -65,9 +12,9 @@ export default function CurrentWeather(props) {
         <Grid item xs={8}>
           <Typography
             variant="h6"
-            color='text.primary'
+            color='primary.main'
           >
-            {weather?.name?.toUpperCase()}, {weather?.country?.toUpperCase()}
+            {weather?.name}, {weather?.country}
           </Typography>
           <Typography
             variant="h2"
@@ -86,20 +33,15 @@ export default function CurrentWeather(props) {
           <Box
             component="img"
             sx={{
-              maxHeight: { xs: 100, md: 150 },
-              maxWidth: { xs: 208, md: 258 },
+              maxWidth: { xs: 150, md: 200 },
             }}
             alt="weather-image"
-            src={imageSrc()}
+            src={weather.humidity > 70 ? cloud : sun}
           />
         </Grid>
       </Grid>
       <br />
-      <div className={'current-weather__additional-details'}>
-        <Grid container spacing={1}>
-          {additionalDetailsComponent}
-        </Grid>
-      </div>
+      <CurrentWeatherDetails weather={weather} />
     </div>
   );
 }
